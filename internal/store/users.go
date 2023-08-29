@@ -1,11 +1,18 @@
 package store
 
-import "errors"
+import (
+	"errors"
+	"time"
+)
 
 type User struct {
-	ID       int
-	Username string `binding:"required,min=5,max=30"`
-	Password string `binding:"required,min=5,max=30"`
+	ID             int
+	Username       string `binding:"required,min=5,max=30"`
+	Password       string `binding:"required,min=5,max=30"`
+	HashedPassword []byte `json:"-"`
+	Salt           []byte `json:"-"`
+	CreatedAt      time.Time
+	ModifiedAt     time.Time
 }
 
 // var Users []*User
